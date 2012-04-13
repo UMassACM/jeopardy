@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+html, body
+{
+	height: 100%;
+	margin: 0px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#wrapper
+{
+	height: 100%;
+	background-color:blue;
+}
+table
+{
+	width:100%;
+	height:100%;
+}
+td
+{
+	color: #dddddd;
+	font-family:Arial, Helvetica, sans-serif;
+	text-align:center;
+	background-color:blue;
+	width: 16.66%;
+}
+
+.prompt
+{
+	color: white;
+	font-size: 20pt;
+	text-align: center;
+	width: 100%;
+	//height: 100%;
+}
+.center
+{
+	margin: auto;
+	position: absolute;
+	top: 50%;
+	vertical-align: middle;
+}
+</style>
+<script>
+function cursorChange()
+{
+	
+}
+</script>
+</head>
+<body>
+<div id="wrapper">
+	<span class="prompt center">
+		This is the average velocity of an unlaiden swallow.
+	</span>
+	<%= link_to "Correct Response", :controller => "response" %>
+</div>
+</body>
+</html>

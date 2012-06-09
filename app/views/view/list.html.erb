@@ -1,0 +1,33 @@
+<h1>Game: <%= @game.name %></h1>
+
+<p>
+	Name: <%= @game.name %><br>
+	id: <%= @game.id %><br>
+	Final Jeopardy:<br>
+	prompt: <%= @game.final_prompt %><br>
+	response: <%= @game.final_response %>
+</p>
+
+<h2>Round One</h2><%= @game.rounds[0].categories[0].name %>
+<% @game.rounds[0].categories.each.with_index do |cat, index| %>
+	<p>
+		<h3>Category <%= index+1 %>: <%= cat.name %></h3>
+		<ol>
+		<% cat.questions.each do |question| %>
+			<li><%= question.prompt %> => <%= question.response %></li>
+		<% end %>
+		</ol>
+	</p>
+<% end %>
+
+<h2>Round Two</h2>
+<% @game.rounds[1].categories.each.with_index do |cat, index| %>
+	<p>
+		<h3>Category <%= index+1 %>: <%= cat.name %></h3>
+		<ol>
+		<% cat.questions.each do |question| %>
+			<li><%= question.prompt %> => <%= question.response %></li>
+		<% end %>
+		</ol>
+	</p>
+<% end %>

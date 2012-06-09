@@ -1,10 +1,31 @@
 Jeopardy::Application.routes.draw do
-  get "response/index"
+  get "view/index"
+  
+  get "view/list"
+  
+  get "view/delete"
 
-  get "prompt/index"
+  get "test/show"
+
+  get "test/delete"
+  
+  get "test/created"
+  post "test/created"
+
+  get "test/index"
+
+  get "create/index"
+  
+  post "create/save"
 
   get "home/index"
+  
+  get "board/prompt"
 
+  get "board/correct_response"
+  
+  get "board/question"
+  
   get "board/index"
 
   # The priority is based upon order of creation:

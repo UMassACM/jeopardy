@@ -1,0 +1,132 @@
+<style>
+	html, body
+	{
+		height: 100%;
+		margin: 0px;
+		font-family:Arial, Helvetica, sans-serif;
+	}
+	#wrapper
+	{
+		height: 100%;
+		width: 1024px;
+		margin: auto;
+		/*background-color:blue;*/
+	}
+	.center
+	{
+		margin: auto;
+		position: absolute;
+		top: 50%;
+		vertical-align: middle;
+	}
+	.hcenter
+	{
+		text-align: center;
+		margin: auto;
+	}
+	
+	label
+	{
+		width: 80px;
+		float: left;
+	}
+	input.question
+	{
+		width: 75%;
+	}
+	input.category
+	{
+		width: 200px;
+	}
+	table.category
+	{
+		width: 500px;
+		margin: auto;
+		margin-bottom: 10px;
+	}
+	textarea
+	{
+		width: 500px;
+	}
+</style>
+
+<div id="wrapper">
+	<h2 class="hcenter">Create Jeopardy Game</h2>
+
+	<!-- <form id="form1" action="/test/created" method=POST><!-- BEGIN FORM -->
+	<form id="form1" action="/create/save" method=POST><!-- BEGIN FORM -->
+		
+		<h3 class="hcenter">Game name: <input type="text" name="game_name" /></h3>
+		
+		<!--  TODO
+		<input type="" onclick="" value="Save" />
+		<input type="submit" value="Publish" />
+		-->
+		
+		<span style="float: left;">Final Jeopardy prompt:</span>
+		<span style="float: right;">Final Jeopardy response:</span>
+		<br style="clear:both;">
+		<textarea name="final_prompt" style="float:left"></textarea>
+		<textarea name="final_response" style="float:right"></textarea>
+		
+		<br style="clear:both;">
+		
+		<div style="width:100px;margin:auto;"><input type="submit" style="width:100%;"/></div>
+
+		<span style="float: left;">Round One</span>
+		<span style="float: right;">Round Two</span>
+		
+		<br style="clear:both;">
+		
+		<!-- BEGIN LOOP -->
+		<% 6.times do |iter| %>
+
+			<table class="category" border="2px" style="float:left;">
+				<tr>
+					<th colspan=2>
+						Category <%= iter+1 %>:
+						<input class="category" type="text" name="round0cat<%= iter %>"/>
+					</th>
+				</tr>
+				<% 5.times do |iter2| %>
+				<tr>
+					<td>
+						<%= "$#{(iter2*200)+200}" %>
+					</td>
+					<td>
+						<label>Prompt:</label>
+							<input class="question" type="text" name="round0cat<%= iter %>prompt<%= iter2 %>" /><br>
+						<label>Response:</label>
+							<input class="question" type="text" name="round0cat<%= iter %>response<%= iter2 %>" />
+					</td>
+				</tr>
+				<% end %>
+			</table>
+			
+			<table class="category" border="2px" style="float:right;">
+				<tr>
+					<th colspan=2>
+						Category <%= iter+1 %>:
+						<input class="category" type="text" name="round1cat<%= iter %>" />
+					</th>
+				</tr>
+				<% 5.times do |iter2| %>
+				<tr>
+					<td>
+						<%= "$#{(iter2*200)+200}" %>
+					</td>
+					<td>
+						<label>Prompt:</label>
+							<input class="question" type="text" name="round1cat<%= iter %>prompt<%= iter2 %>" /><br>
+						<label>Response:</label>
+							<input class="question" type="text" name="round1cat<%= iter %>response<%= iter2 %>" />
+					</td>
+				</tr>
+				<% end %>
+			</table>
+
+		<% end %>
+		<!-- END LOOP -->
+
+	</form><!-- END FORM -->
+</div>

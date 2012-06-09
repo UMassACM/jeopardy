@@ -3,12 +3,17 @@ class Game < ActiveRecord::Base
 	
 	validates :name, :presence => true
 	
-# Override create
+	# Override create
 	def create
 		super
 		
-		#temporary
 		self.rounds.build.save #round one
 		self.rounds.build.save #round two
+	end
+	
+	# Override save
+	def save
+		super
+		self.rounds.each {|item| item.save}
 	end
 end

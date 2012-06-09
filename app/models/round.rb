@@ -5,11 +5,11 @@ class Round < ActiveRecord::Base
   def create
 	super
 	
-	self.categories.build.save
-	self.categories.build.save
-	self.categories.build.save
-	self.categories.build.save
-	self.categories.build.save
-	self.categories.build.save
+	6.times { self.categories.build.save }
+  end
+  
+  def save
+	super
+	self.categories.each {|item| item.save}
   end
 end

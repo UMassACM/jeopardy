@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  final_prompt: MyText
+  final_response: MyText
+
+two:
+  name: MyString
+  final_prompt: MyText
+  final_response: MyText

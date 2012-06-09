@@ -1,0 +1,12 @@
+<h2>Games:</h2>
+
+<% Game.all.each do |game| %>
+
+<%= link_to game.name, :controller => "board", :id => game.id %>&nbsp;
+<%= link_to "(Delete)", :controller => "view", :action => "delete", :id => game.id %>&nbsp;
+<%= link_to "(view)", :controller => "view", :action => "list", :id => game.id %><br />
+
+<% end %>
+
+<br>
+<a href="/test/delete">delete all</a>

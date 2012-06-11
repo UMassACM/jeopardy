@@ -28,15 +28,14 @@ function selectQuestion(category, question)
 	var r,c,q;
 	r = localStorage["round"];
 	localStorage["round"+r+"category"+category+"question"+question] = "true";
-	var selector = $("#round"+r+" > tbody > .question"+question+" > .category"+category);
-	selector.css("background", "gray");
-	console.log(selector);
+	var questionSelector = $("#round"+r+" > tbody > .question"+question+" > .category"+category);
+	questionSelector.css("background", "gray");
 	
 	var url = "/board/question.json";
 	var params = "?id=" + GAME_ID + "&round=" + localStorage["round"] + "&category=" + category + "&amount=" + question;
 	var json = jQuery.parseJSON(ajax(url+params));
 	console.log(ajax(url+params));
-	displayQuestion(json);
+	displayQuestion(json, questionSelector);
 }
 
 function testAjax()
@@ -55,14 +54,38 @@ function testAjax()
 	displayQuestion(json);
 }
 
-function displayQuestion(json)
+function displayQuestion(json, selector)
 {
-	var ques = $("#question");
+	//var selector = $("#round0 > tbody > .question3 > .category3");
+	//var ques = $("#question");
+	
+	// Fill in the question template
 	$("#prompt").html(json.prompt);
 	$("#response").html(json.response);
-	$("#round0").hide();
-	$("#round1").hide();
+	
+	// Set the position/size of the template to match the question
+	var w, h, x, y;
+	w=selector.width();
+	h=selector.height();
+	x=selector.position().left;
+	y=selector.position().top;
+	var tmp = $("#question");	// get the question template
+	tmp.width(w);
+	tmp.height(h);
+	tmp.css("left", x);
+	tmp.css("top", y);
+	
+	//$("#round0").hide();
+	//$("#round1").hide();
 	$("#question").show();
+	
+	$("#question").animate(
+	{
+		top: 0,
+		left: 0,
+		width: '100%',
+		height: '100%'
+	}, 400);
 }
 
 function ajax(url)

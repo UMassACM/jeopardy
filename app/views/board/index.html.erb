@@ -40,7 +40,7 @@ var GAME_ID = <%= @game.id %>;
 
 <div id="wrapper">
 
-	<table id="round0">		
+	<table id="round0" style="position: relative;">		
 		<tbody>
 			<tr>
 				<td><%= @game.rounds[0].categories[0].name %></td>
@@ -89,4 +89,5 @@ var GAME_ID = <%= @game.id %>;
 			<span id="response" class="" style="display: none;" onclick="showBoard();"></span>
 		</div>
 	</div>
+
 </div>

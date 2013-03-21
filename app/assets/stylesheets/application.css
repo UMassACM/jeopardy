@@ -12,8 +12,25 @@
  *= require_tree .
 */
 
+::selection
+{
+	background: #fff2a8;
+	color: #000000;
+}
+::-moz-selection
+{
+	background: #fff2a8;
+	color: #000000;
+}
+
+html, body
+{
+	font-family: Arial, Helvetica, sans-serif;
+	height: 100%;
+	margin: 0px;
+}
+
 a
 {
-	/*color: #7f7f7f;*/
-	color: #bfbfbf;
+	
 }

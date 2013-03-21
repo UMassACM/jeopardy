@@ -25,17 +25,18 @@ function gameInProgress()
 
 function selectQuestion(category, question)
 {
-	var r,c,q;
+	var r,c,q; //round,category,question
 	r = localStorage["round"];
 	localStorage["round"+r+"category"+category+"question"+question] = "true";
 	var questionSelector = $("#round"+r+" > tbody > .question"+question+" > .category"+category);
-	questionSelector.css("background", "gray");
+	//TODO: save to localstorage
 	
 	var url = "/board/question.json";
 	var params = "?id=" + GAME_ID + "&round=" + localStorage["round"] + "&category=" + category + "&amount=" + question;
 	var json = jQuery.parseJSON(ajax(url+params));
 	console.log(ajax(url+params));
 	displayQuestion(json, questionSelector);
+	questionSelector.children("a").hide(); //cannot select the same question again the same game
 }
 
 function testAjax()

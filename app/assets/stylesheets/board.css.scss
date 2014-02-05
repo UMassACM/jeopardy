@@ -20,6 +20,7 @@ table.gameboard td
 	background: linear-gradient(to top left, #000088, #0000ff);
 	background: -webkit-linear-gradient(bottom right, #000088, #0000ff);
 	border-radius: 5px;
+	//border-radius: 100px 100px 100px 100px / 5px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 20pt;
 	text-align: center;
@@ -47,10 +48,16 @@ td > a
 	margin: auto;
 	position: absolute;
 	top: 50%;
+	margin-top: auto;
+	margin-bottom: auto;
 	vertical-align: middle;
 	
 	color: white;
 	font-size: 20pt;
 	text-align: center;
 	width: 100%;
+}
+.question > span
+{
+	
 }

@@ -1,0 +1,29 @@
+<h1>Game created</h1>
+
+<%
+@g.name = params[:game_name]
+%>
+
+just added:
+<br>
+<%= @g.id %>: <%= @g.name %>
+<% @g.save %>
+<br><br>
+All games:
+<% @games.each do |game| %>
+
+<p>
+	Name: <%= game.name %>
+	<br>
+	id: <%= game.id %>
+</p>
+
+<% end %>
+<hr>
+<%= Game.all %>
+<hr>
+<%= Round.all %>
+<hr>
+<%= @g.rounds %>
+<hr>
+<%= @g.rounds[0].categories[0].name %>

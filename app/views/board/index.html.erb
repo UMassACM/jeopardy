@@ -16,12 +16,12 @@ var GAME_ID = <%= @game.id %>;
 			</tr>
 		<% 5.times do |iter| %>
 			<tr class="question<%= iter %>">
-				<td class="category0"><a href="#" onclick="selectQuestion(0,<%= iter %>);"><%= "$#{(iter*200)+200}" %></td>
-				<td class="category1"><a href="#" onclick="selectQuestion(1,<%= iter %>);"><%= "$#{(iter*200)+200}" %></td>
-				<td class="category2"><a href="#" onclick="selectQuestion(2,<%= iter %>);"><%= "$#{(iter*200)+200}" %></td>
-				<td class="category3"><a href="#" onclick="selectQuestion(3,<%= iter %>);"><%= "$#{(iter*200)+200}" %></td>
-				<td class="category4"><a href="#" onclick="selectQuestion(4,<%= iter %>);"><%= "$#{(iter*200)+200}" %></td>
-				<td class="category5"><a href="#" onclick="selectQuestion(5,<%= iter %>);"><%= "$#{(iter*200)+200}" %></td>
+				<td class="category0"><a onclick="selectQuestion(0,<%= iter %>);"><%= "$#{(iter*200)+200}" %></a></td>
+				<td class="category1"><a onclick="selectQuestion(1,<%= iter %>);"><%= "$#{(iter*200)+200}" %></a></td>
+				<td class="category2"><a onclick="selectQuestion(2,<%= iter %>);"><%= "$#{(iter*200)+200}" %></a></td>
+				<td class="category3"><a onclick="selectQuestion(3,<%= iter %>);"><%= "$#{(iter*200)+200}" %></a></td>
+				<td class="category4"><a onclick="selectQuestion(4,<%= iter %>);"><%= "$#{(iter*200)+200}" %></a></td>
+				<td class="category5"><a onclick="selectQuestion(5,<%= iter %>);"><%= "$#{(iter*200)+200}" %></a></td>
 			</tr>
 		<% end %>
 		</tbody>
@@ -37,8 +37,8 @@ var GAME_ID = <%= @game.id %>;
 			<td><%= @game.rounds[0].categories[5].name %></td>
 		</tr>
 		<tr>
-			<td><%= link_to "$200", :controller => "board", :action => "prompt", :id => @game.id, :round => "0", :category => "0", :amount => "0" %></td>
-			<td><%= link_to (@round==0)?"$200":"$400", :controller => "board", :action => "prompt", :id => @game.id, :round => "0", :category => "1", :amount => "0" %></td>
+			<td>$200</td>
+			<td>$200</td>
 			<td>$200</td>
 			<td>$200</td>
 			<td>$200</td>

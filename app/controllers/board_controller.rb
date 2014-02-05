@@ -16,9 +16,25 @@ class BoardController < ApplicationController
 		@cat = params[:category].to_i
 		@question = params[:amount].to_i
 		
+#		respond_to do |format|
+#			format.json { render :json => @game.rounds[@round].categories[@cat].questions[@question] }
+#		end
 		respond_to do |format|
-			format.json { render :json => @game.rounds[@round].categories[@cat].questions[@question] }
+			#markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+			@temp = @game.rounds[@round].categories[@cat].questions[@question];
+			@my_hash = { :prompt => markdown(@temp.prompt), :response => @temp.response }
+			format.json { render :json => @my_hash }
+			
+			#format.json{ render :json => markdown(@game.rounds[@round].categories[@cat].questions[@question].prompt) }
 		end
+	end
+	def markdown(text)
+		markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true, :fenced_code_blocks => true, :lax_spacing => true)
+		markdown.render(text).html_safe
+	end
+	
+	def presenter
+		
 	end
 	
 	def prompt
@@ -39,5 +55,11 @@ class BoardController < ApplicationController
 		@amount = params[:amount].to_i
 		#@correct_text = "Would that be an African or a European swallow?"
 		@correct_text = @game.rounds[@round].categories[@category].questions[@amount].response
+	end
+	
+	def final_jeopardy
+		@game = Game.find(params[:id])
+		@prompt = @game.final_prompt
+		@response = @game.final_response
 	end
 end

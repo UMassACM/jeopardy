@@ -1,0 +1,72 @@
+<style>
+	#final-jeopardy, #final-prompt, #final-response
+	{
+		height: 100%;
+		background: blue;
+		background: linear-gradient(to top left, #000088, #0000ff);
+		background: -webkit-linear-gradient(bottom right, #000088, #0000ff);
+		bottom: 50%;
+	}
+	
+	.table-
+	{
+		display: table;
+		
+		width: 100%;
+	}
+	.cell-
+	{
+		display: table-cell;
+		vertical-align: middle;
+		
+		background: blue;
+		height: 100%;
+		width: 100%;
+	}
+</style>
+<script>
+$(document).ready(function(){
+	$("#final-jeopardy").click(function(){
+		$("#final-jeopardy").hide();
+		$("#final-prompt").show();
+	});
+	$("#final-prompt").click(function(){
+		$("#final-prompt").hide();
+		$("#final-response").show();
+	});
+});
+
+function ques()
+{
+	$("#final-jeopardy").hide();
+		$("#final-prompt").show();
+}
+
+function ans()
+{
+	$("#final-prompt").hide();
+		$("#final-response").show();
+}
+</script>
+
+<div id="wrapper">
+
+	<div id="final-jeopardy" style="" onclick="ques();" class="table">
+		<div class="question center">
+			<span style="font-size:48pt;" onclick="">Final<br>Jeopardy</span>
+		</div>
+	</div>
+	
+	<div id="final-prompt" onclick="ans();" style="background-color: blue; display: none;">
+		<div class="question center">
+			<span id="prompt" class="" onclick=""><%= @prompt %></span>
+		</div>
+	</div>
+	
+	<div id="final-response" onclick="" style="background-color: blue; display: none;">
+		<div class="question center">
+			<span id="response" class="" onclick=""><%= @response %></span>
+		</div>
+	</div>
+
+</div>

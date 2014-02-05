@@ -1,32 +1,24 @@
 Jeopardy::Application.routes.draw do
+  get "home/index"
+  
+  get "board/index"
+  get "board/question"
+  get "board/presenter"
+  get "board/final_jeopardy"
+  
+  get "create/index"
+  post "create/save"
+  
+  get "edit/modify"
+  post "edit/update" #TODO replace create/save with this?
+  get "edit/delete"
+  get "edit/delete_all"
+  
   get "view/index"
-  
   get "view/list"
-  
-  get "view/delete"
-
-  get "test/show"
-
-  get "test/delete"
   
   get "test/created"
   post "test/created"
-
-  get "test/index"
-
-  get "create/index"
-  
-  post "create/save"
-
-  get "home/index"
-  
-  get "board/prompt"
-
-  get "board/correct_response"
-  
-  get "board/question"
-  
-  get "board/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

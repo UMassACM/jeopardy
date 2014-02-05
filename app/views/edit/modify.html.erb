@@ -51,12 +51,12 @@
 </style>
 
 <div id="wrapper">
-	<h2 class="hcenter">Create Jeopardy Game</h2>
+	<h2 class="hcenter">Edit Jeopardy Game</h2>
 
 	<!-- <form id="form1" action="/test/created" method=POST><!-- BEGIN FORM -->
-	<form id="form1" action="/create/save" method=POST><!-- BEGIN FORM -->
-		
-		<h3 class="hcenter">Game name: <input type="text" name="game_name" /></h3>
+	<form id="form1" action="/edit/update" method=POST><!-- BEGIN FORM -->
+		<input type="hidden" value="<%= @game.id %>" name="id" />
+		<h3 class="hcenter">Game name: <input type="text" value="<%= @game.name %>" name="game_name" ></input></h3>
 		
 		<!--  TODO
 		<input type="" onclick="" value="Save" />
@@ -66,12 +66,12 @@
 		<span style="float: left;">Final Jeopardy prompt:</span>
 		<span style="float: right;">Final Jeopardy response:</span>
 		<br style="clear:both;">
-		<textarea name="final_prompt" style="float:left"></textarea>
-		<textarea name="final_response" style="float:right"></textarea>
+		<textarea name="final_prompt" value="<%= @game.final_prompt %>" style="float:left"></textarea>
+		<textarea name="final_response" value="<%= @game.final_prompt %>" style="float:right"></textarea>
 		
 		<br style="clear:both;">
 		
-		<div style="width:100px;margin:auto;"><input type="submit" value="Publish" style="width:100%;"/></div>
+		<div style="width:100px;margin:auto;"><input type="submit" value="Update" style="width:100%;"/></div>
 
 		<span style="float: left;">Round One</span>
 		<span style="float: right;">Round Two</span>
@@ -85,7 +85,7 @@
 				<tr>
 					<th colspan=2>
 						Category <%= iter+1 %>:
-						<input class="category" type="text" name="round0cat<%= iter %>"/>
+						<input class="category" type="text" value="<%= @game.rounds[0].categories[iter].name %>" name="round0cat<%= iter %>"/>
 					</th>
 				</tr>
 				<% 5.times do |iter2| %>
@@ -95,9 +95,9 @@
 					</td>
 					<td>
 						<label>Prompt:</label>
-							<textarea class="question" name="round0cat<%= iter %>prompt<%= iter2 %>"></textarea><br>
+							<textarea class="question" name="round0cat<%= iter %>prompt<%= iter2 %>"><%= @game.rounds[0].categories[iter].questions[iter2].prompt %></textarea><br>
 						<label>Response:</label>
-							<textarea class="question" name="round0cat<%= iter %>response<%= iter2 %>"></textarea>
+							<textarea class="question" name="round0cat<%= iter %>response<%= iter2 %>"><%= @game.rounds[0].categories[iter].questions[iter2].response %></textarea>
 					</td>
 				</tr>
 				<% end %>
@@ -107,7 +107,7 @@
 				<tr>
 					<th colspan=2>
 						Category <%= iter+1 %>:
-						<input class="category" type="text" name="round1cat<%= iter %>" />
+						<input class="category" type="text" value="<%= @game.rounds[1].categories[iter].name %>" name="round1cat<%= iter %>" />
 					</th>
 				</tr>
 				<% 5.times do |iter2| %>
@@ -117,9 +117,9 @@
 					</td>
 					<td>
 						<label>Prompt:</label>
-							<textarea class="question" name="round1cat<%= iter %>prompt<%= iter2 %>"></textarea><br>
+							<textarea class="question" name="round1cat<%= iter %>prompt<%= iter2 %>"><%= @game.rounds[1].categories[iter].questions[iter2].prompt %></textarea><br>
 						<label>Response:</label>
-							<textarea class="question" name="round1cat<%= iter %>response<%= iter2 %>"></textarea>
+							<textarea class="question" name="round1cat<%= iter %>response<%= iter2 %>"><%= @game.rounds[1].categories[iter].questions[iter2].response %></textarea>
 					</td>
 				</tr>
 				<% end %>

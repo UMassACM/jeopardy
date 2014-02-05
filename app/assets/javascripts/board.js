@@ -4,23 +4,100 @@ $(document).ready(function(){
 	initGame();
 });
 
+var presenterWindow;
+$(document).keypress(function(e)
+{
+	console.log(e.which);
+	if(e.which == 96) //'`'
+	{
+		var w = window.open("/board/presenter");
+		//presenterWindow = w;
+		//$(w.document).html("test");
+		//w.document.write("Testing");
+		//w.document.write("<div id='response'></div>");
+		//w.document.close();
+		//w.document.getElementById("answer").innerHTML = "Hello World";
+		var x = w.document.getElementById("answer").innerHTML;
+		alert(x);
+	}
+	if(e.which == 114) //'r'
+	{
+		resetGameProgress();
+	}
+	if(e.which == 102) //'f'
+	{
+		window.location.pathname = "/board/final_jeopardy?id="+GAME_ID;
+	}
+	
+});
+
 function initGame()
 {
-	$("td").each(function(){
-		//$(this).attr("onclick", 
-		//$(this).css(
-	});
+	//initLocalStorage();
+	//resetGameProgress();
 	
-	//var foo = localStorage["bar"];
-	if(!gameInProgress())
+	//restore in-progress game
+	for(var i=0; i<6; i++)
 	{
-		localStorage["round"] = "0";
+		for(var j=0; j<5; j++)
+		{
+			if(localStorage["game"+GAME_ID+"category"+i+"question"+j+"seen"] == "true")
+			{
+				var r = 0;
+				$("#round"+r+" > tbody > .question"+j+" > .category"+i).children("a").css("visibility", "hidden");
+			}
+		}
+	}
+	
+	if(!questionsRemaining() && window.location.pathname==="/board/index")
+	{
+		//redirect to final jeopardy
+		//window.location.pathname = "/board/final_jeopardy?id="+GAME_ID;
 	}
 }
 
-function gameInProgress()
+function initLocalStorage()
 {
-	return false; //temp
+	for(var i=0; i<6; i++)
+	{
+		for(var j=0; j<5; j++)
+		{
+			localStorage["game"+GAME_ID+"category"+i+"question"+j+"seen"] = undefined;
+		}
+	}
+	
+	resetGameProgress();
+}
+function resetGameProgress()
+{
+	alert("resetting");
+	for(var i=0; i<6; i++)
+	{
+		for(var j=0; j<5; j++)
+		{
+			localStorage["game"+GAME_ID+"category"+i+"question"+j+"seen"] = undefined;
+		}
+	}
+}
+
+function questionsRemaining()
+{
+	//return false;
+	
+	var seen_all = false;
+	for(var i=0; i<6; i++)
+	{
+		for(var j=0; j<5; j++)
+		{
+			if(localStorage["game"+GAME_ID+"category"+i+"question"+j+"seen"] == undefined)
+			{
+				//alert("true");
+				return true;
+			}
+		}
+	}
+	//return !seen_all;
+	return false;
 }
 
 function selectQuestion(category, question)
@@ -30,29 +107,16 @@ function selectQuestion(category, question)
 	localStorage["round"+r+"category"+category+"question"+question] = "true";
 	var questionSelector = $("#round"+r+" > tbody > .question"+question+" > .category"+category);
 	//TODO: save to localstorage
+	localStorage["game"+GAME_ID+"category"+category+"question"+question+"seen"] = "true";
 	
 	var url = "/board/question.json";
 	var params = "?id=" + GAME_ID + "&round=" + localStorage["round"] + "&category=" + category + "&amount=" + question;
 	var json = jQuery.parseJSON(ajax(url+params));
 	console.log(ajax(url+params));
 	displayQuestion(json, questionSelector);
-	questionSelector.children("a").hide(); //cannot select the same question again the same game
-}
-
-function testAjax()
-{
-	//jQuery.ajax();
-//	/board/question.json?amount=0&category=0&id=71&round=0
-	//var resp = jQuery.getJSON("/board/question.json?amount=0&category=0&id=71&round=0");
-	var url = "/board/question.json?amount=0&category=0&id=71&round=0";
-	var resp = jQuery.get("/board/question.json?amount=0&category=0&id=71&round=0");
-	
-	console.log(ajax(url));
-	var json = jQuery.parseJSON(ajax(url));
-	console.log(json.prompt);
-	console.log(json.response);
-	
-	displayQuestion(json);
+	questionSelector.children("a").css("visibility", "hidden"); //cannot select the same question again the same game
+	if(presenterWindow) alert("presenter window");
+	return false;
 }
 
 function displayQuestion(json, selector)
@@ -87,6 +151,13 @@ function displayQuestion(json, selector)
 		width: '100%',
 		height: '100%'
 	}, 400);
+	
+	//If the presenter window is open, display the answer there
+	if(presenterWindow)
+	{
+		var div = presenterWindow.document.getElementById("response");
+		div.innerHTML = json.response;
+	}
 }
 
 function ajax(url)
@@ -120,4 +191,6 @@ function showBoard()
 	//check round
 	//if(localStorage["round"] == "0");
 	$("#round0").show();
+	
+	//if(!questionsRemaining()) window.location.pathname = "/board/final_jeopardy?id="+GAME_ID;
 }

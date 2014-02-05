@@ -3,10 +3,14 @@
 <% Game.all.each do |game| %>
 
 <%= link_to game.name, :controller => "board", :id => game.id %>&nbsp;
-<%= link_to "(Delete)", :controller => "view", :action => "delete", :id => game.id %>&nbsp;
+<%= link_to "(Delete)", :controller => "edit", :action => "delete", :id => game.id %>&nbsp;
+<%= link_to "(Edit)", :controller => "edit", :action => "modify", :id => game.id %>&nbsp;
 <%= link_to "(view)", :controller => "view", :action => "list", :id => game.id %><br />
 
 <% end %>
 
 <br>
-<a href="/test/delete">delete all</a>
+<a href="/edit/delete_all">delete all</a>
+<br><br>
+<%= link_to "back", "/" %>
+<%= link_to "Create", :controller => "create", :action => "index" %>

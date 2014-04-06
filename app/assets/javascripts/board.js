@@ -103,7 +103,7 @@ function questionsRemaining()
 function selectQuestion(category, question)
 {
 	var r,c,q; //round,category,question
-	r = localStorage["round"];
+	r = localStorage["round"] | 0;
 	localStorage["round"+r+"category"+category+"question"+question] = "true";
 	var questionSelector = $("#round"+r+" > tbody > .question"+question+" > .category"+category);
 	//TODO: save to localstorage

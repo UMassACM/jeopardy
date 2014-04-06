@@ -13,3 +13,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore vendor/bundle
+/vendor/bundle
+
+# temporary editor files
+*~
+\#*#

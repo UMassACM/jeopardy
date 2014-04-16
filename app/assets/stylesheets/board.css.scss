@@ -43,28 +43,23 @@ td > a
 	word-wrap: break-word;
 }
 
-/*.question.center
-{
-	margin: auto;
-	position: absolute;
-	top: 50%;
-	margin-top: auto;
-	margin-bottom: auto;
-	vertical-align: middle;
-	
-	color: white;
-	font-size: 20pt;
-	text-align: center;
-	width: 100%;
-}*/
 .question.center
 {
 	margin: auto;
 	position: absolute;
 	top: 0; left: 0; bottom: 0; right: 0;
 	
-	display: flex; /* Flexbox FTW! */
+
+	/* Flexbox FTW! */
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+
+	-webkit-align-items: center;
 	align-items: center;
+
+	-webkit-justify-content: center;
 	justify-content: center;
 	/*padding: 100px;*/
 
@@ -72,7 +67,6 @@ td > a
 	/* TODO move to .question*/
 	color: white;
 	font-size: 20pt;
-	/*text-align: center;*/
 }
 
 .question > span

@@ -7,12 +7,12 @@ var GAME_ID = <%= @game.id %>;
 	<table id="round0" class="gameboard" style="position: relative;">		
 		<tbody>
 			<tr>
-				<td><%= @game.rounds[0].categories[0].name %></td>
-				<td><%= @game.rounds[0].categories[1].name %></td>
-				<td><%= @game.rounds[0].categories[2].name %></td>
-				<td><%= @game.rounds[0].categories[3].name %></td>
-				<td><%= @game.rounds[0].categories[4].name %></td>
-				<td><%= @game.rounds[0].categories[5].name %></td>
+				<td class="title0 zoomTarget"><%= @game.rounds[0].categories[0].name %></td>
+				<td class="title1 zoomTarget"><%= @game.rounds[0].categories[1].name %></td>
+				<td class="title2 zoomTarget"><%= @game.rounds[0].categories[2].name %></td>
+				<td class="title3 zoomTarget"><%= @game.rounds[0].categories[3].name %></td>
+				<td class="title4 zoomTarget"><%= @game.rounds[0].categories[4].name %></td>
+				<td class="title5 zoomTarget"><%= @game.rounds[0].categories[5].name %></td>
 			</tr>
 		<% 5.times do |iter| %>
 			<tr class="question<%= iter %>">
@@ -47,7 +47,7 @@ var GAME_ID = <%= @game.id %>;
 	</table>
 	
 	<div id="question" onclick="showBoard();" style="display: none;">
-		<div class="question center">
+		<div class="question center absolute-center">
 			<span id="prompt" class="" onclick="showAnswer();"></span>
 			<br />
 			<span id="response" class="" style="display: none;" onclick="showBoard();"></span>

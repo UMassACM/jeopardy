@@ -20,6 +20,10 @@ $(document).keypress(function(e)
 		var x = w.document.getElementById("answer").innerHTML;
 		alert(x);
 	}
+	if(e.which == 115) //'s'
+	{
+		$(".title0 > .category0").zoomTarget();
+	}
 	if(e.which == 114) //'r'
 	{
 		resetGameProgress();
@@ -114,7 +118,9 @@ function selectQuestion(category, question)
 	var json = jQuery.parseJSON(ajax(url+params));
 	console.log(ajax(url+params));
 	displayQuestion(json, questionSelector);
-	questionSelector.children("a").css("visibility", "hidden"); //cannot select the same question again the same game
+
+	//commented for debugging
+//	questionSelector.children("a").css("visibility", "hidden"); //cannot select the same question again the same game
 	if(presenterWindow) alert("presenter window");
 	return false;
 }
